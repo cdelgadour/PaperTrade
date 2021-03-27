@@ -12,48 +12,48 @@ namespace PaperTradeAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UsuariosController : ControllerBase
     {
         private readonly PaperTradeAPIContext _context;
 
-        public UsersController(PaperTradeAPIContext context)
+        public UsuariosController(PaperTradeAPIContext context)
         {
             _context = context;
         }
 
-        // GET: api/Users
+        // GET: api/Usuarios
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUser()
+        public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuario()
         {
-            return await _context.User.ToListAsync();
+            return await _context.Usuario.ToListAsync();
         }
 
-        // GET: api/Users/5
+        // GET: api/Usuarios/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<Usuario>> GetUsuario(int id)
         {
-            var user = await _context.User.FindAsync(id);
+            var usuario = await _context.Usuario.FindAsync(id);
 
-            if (user == null)
+            if (usuario == null)
             {
                 return NotFound();
             }
 
-            return user;
+            return usuario;
         }
 
-        // PUT: api/Users/5
+        // PUT: api/Usuarios/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        public async Task<IActionResult> PutUsuario(int id, Usuario usuario)
         {
-            if (id != user.Id)
+            if (id != usuario.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(user).State = EntityState.Modified;
+            _context.Entry(usuario).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace PaperTradeAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
+                if (!UsuarioExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +74,37 @@ namespace PaperTradeAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Users
+        // POST: api/Usuarios
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<Usuario>> PostUsuario(Usuario usuario)
         {
-            _context.User.Add(user);
+            _context.Usuario.Add(usuario);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            return CreatedAtAction("GetUsuario", new { id = usuario.Id }, usuario);
         }
 
-        // DELETE: api/Users/5
+        // DELETE: api/Usuarios/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<User>> DeleteUser(int id)
+        public async Task<ActionResult<Usuario>> DeleteUsuario(int id)
         {
-            var user = await _context.User.FindAsync(id);
-            if (user == null)
+            var usuario = await _context.Usuario.FindAsync(id);
+            if (usuario == null)
             {
                 return NotFound();
             }
 
-            _context.User.Remove(user);
+            _context.Usuario.Remove(usuario);
             await _context.SaveChangesAsync();
 
-            return user;
+            return usuario;
         }
 
-        private bool UserExists(int id)
+        private bool UsuarioExists(int id)
         {
-            return _context.User.Any(e => e.Id == id);
+            return _context.Usuario.Any(e => e.Id == id);
         }
     }
 }

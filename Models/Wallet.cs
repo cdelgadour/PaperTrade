@@ -21,7 +21,7 @@ namespace PaperTradeAPI.Models
         public decimal Balance { get; set; }
 
         public int UserId { get; set; }
-        public User User { get; set; }
+        public Usuario Usuario { get; set; }
 
         [InverseProperty("Credit")]
         public List<Transaction> Credits { get; set; }

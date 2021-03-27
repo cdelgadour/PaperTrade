@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PaperTradeAPI.Data;
 
 namespace PaperTradeAPI.Migrations
 {
     [DbContext(typeof(PaperTradeAPIContext))]
-    partial class PaperTradeAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20210326235700_marino")]
+    partial class marino
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,7 +61,7 @@ namespace PaperTradeAPI.Migrations
                     b.ToTable("Transaction");
                 });
 
-            modelBuilder.Entity("PaperTradeAPI.Models.Usuario", b =>
+            modelBuilder.Entity("PaperTradeAPI.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -75,7 +77,7 @@ namespace PaperTradeAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Usuario");
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("PaperTradeAPI.Models.Wallet", b =>
@@ -94,12 +96,9 @@ namespace PaperTradeAPI.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UsuarioId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Wallet");
                 });
@@ -117,9 +116,11 @@ namespace PaperTradeAPI.Migrations
 
             modelBuilder.Entity("PaperTradeAPI.Models.Wallet", b =>
                 {
-                    b.HasOne("PaperTradeAPI.Models.Usuario", "Usuario")
+                    b.HasOne("PaperTradeAPI.Models.User", "User")
                         .WithMany("Wallets")
-                        .HasForeignKey("UsuarioId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

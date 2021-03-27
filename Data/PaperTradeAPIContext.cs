@@ -14,7 +14,7 @@ namespace PaperTradeAPI.Data
         {
         }
 
-        public DbSet<PaperTradeAPI.Models.User> User { get; set; }
+        public DbSet<PaperTradeAPI.Models.Usuario> Usuario { get; set; }
 
         public DbSet<PaperTradeAPI.Models.Wallet> Wallet { get; set; }
 
