@@ -27,14 +27,13 @@ namespace PaperTradeAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-
             services.AddDbContext<PaperTradeAPIContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("PaperTradeAPIContext")));
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, PaperTradeAPIContext context)
         {
             if (env.IsDevelopment())
             {
@@ -51,6 +50,16 @@ namespace PaperTradeAPI
             {
                 endpoints.MapControllers();
             });
+
+            if (!context.User.Any())
+            {
+                context.User.Add(new Models.User {
+                    Email = "test@test.com",
+                    Password = "test"
+                });
+            }
+
+            context.SaveChanges();
         }
     }
 }

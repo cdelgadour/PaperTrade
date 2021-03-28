@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaperTradeAPI", "PaperTradeAPI.csproj", "{23493A00-8E93-42A6-A6F6-6C1EF589BC38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaperTradeAPI", "PaperTradeAPI.csproj", "{23493A00-8E93-42A6-A6F6-6C1EF589BC38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaperTradeXamarin.Android", "..\PaperTradeXamarin\PaperTradeXamarin.Android\PaperTradeXamarin.Android.csproj", "{A319E51F-AB78-406D-8EF5-5F899443D3E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaperTradeXamarin", "..\PaperTradeXamarin\PaperTradeXamarin\PaperTradeXamarin.csproj", "{EF5DEEC9-6DD0-4D13-927A-CD163557372C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,16 @@ Global
 		{23493A00-8E93-42A6-A6F6-6C1EF589BC38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23493A00-8E93-42A6-A6F6-6C1EF589BC38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23493A00-8E93-42A6-A6F6-6C1EF589BC38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A319E51F-AB78-406D-8EF5-5F899443D3E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A319E51F-AB78-406D-8EF5-5F899443D3E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A319E51F-AB78-406D-8EF5-5F899443D3E9}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A319E51F-AB78-406D-8EF5-5F899443D3E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A319E51F-AB78-406D-8EF5-5F899443D3E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A319E51F-AB78-406D-8EF5-5F899443D3E9}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{EF5DEEC9-6DD0-4D13-927A-CD163557372C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF5DEEC9-6DD0-4D13-927A-CD163557372C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF5DEEC9-6DD0-4D13-927A-CD163557372C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF5DEEC9-6DD0-4D13-927A-CD163557372C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

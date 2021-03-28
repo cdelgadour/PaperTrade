@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PaperTradeAPI.Data;
 using PaperTradeAPI.Models;
+using PaperTradeXamarin.Models;
 
 namespace PaperTradeAPI.Controllers
 {
@@ -106,5 +107,21 @@ namespace PaperTradeAPI.Controllers
         {
             return _context.User.Any(e => e.Id == id);
         }
+
+        [HttpPost("validation")]
+        public ActionResult<User> ValidateUser(ValidateUser loginUser)
+        {
+            var existingUser = _context.User.Where(user => user.Email == loginUser.Email && user.Password == loginUser.Password).FirstOrDefault();
+
+            if (existingUser != null)
+            {
+                return existingUser;
+            } else
+            {
+                return BadRequest();
+            }
+        }
+
+
     }
 }
