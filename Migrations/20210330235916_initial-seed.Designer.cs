@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PaperTradeAPI.Data;
 
 namespace PaperTradeAPI.Migrations
 {
     [DbContext(typeof(PaperTradeAPIContext))]
-    partial class PaperTradeAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20210330235916_initial-seed")]
+    partial class initialseed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,9 +96,6 @@ namespace PaperTradeAPI.Migrations
 
                     b.Property<int>("Currency")
                         .HasColumnType("int");
-
-                    b.Property<string>("CurrencyValue")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");

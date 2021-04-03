@@ -80,6 +80,22 @@ namespace PaperTradeAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Transaction>> PostTransaction(Transaction transaction)
         {
+            Wallet debitWallet = _context.Wallet.Where(x => x.Id == transaction.DebitWalletId).FirstOrDefault();
+            Wallet creditWallet = _context.Wallet.Where(x => x.Id == transaction.CreditWalletId).FirstOrDefault();
+
+            if (creditWallet.Currency == (Currency)2)
+            {
+                creditWallet.Balance += transaction.TransactionTotal;
+                debitWallet.Balance -= transaction.Amount;
+            } else
+            {
+                debitWallet.Balance -= transaction.TransactionTotal;
+                creditWallet.Balance += transaction.Amount;
+            }
+            
+
+            _context.Entry(debitWallet).State = EntityState.Modified;
+            _context.Entry(creditWallet).State = EntityState.Modified;
             _context.Transaction.Add(transaction);
             await _context.SaveChangesAsync();
 

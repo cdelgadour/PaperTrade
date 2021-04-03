@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PaperTradeAPI.Migrations
 {
-    public partial class initial : Migration
+    public partial class initialseed : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,8 +11,7 @@ namespace PaperTradeAPI.Migrations
                 name: "User",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(nullable: false),
                     Email = table.Column<string>(nullable: true),
                     Password = table.Column<string>(nullable: false)
                 },
@@ -25,8 +24,7 @@ namespace PaperTradeAPI.Migrations
                 name: "Wallet",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(nullable: false),
                     Currency = table.Column<int>(nullable: false),
                     Balance = table.Column<decimal>(type: "decimal(18, 6)", nullable: false),
                     UserId = table.Column<int>(nullable: false)
@@ -73,6 +71,26 @@ namespace PaperTradeAPI.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.InsertData(
+                table: "User",
+                columns: new[] { "Id", "Email", "Password" },
+                values: new object[] { 1, "test@test.com", "test" });
+
+            migrationBuilder.InsertData(
+                table: "Wallet",
+                columns: new[] { "Id", "Balance", "Currency", "UserId" },
+                values: new object[] { 1, 2000.00m, 0, 1 });
+
+            migrationBuilder.InsertData(
+                table: "Wallet",
+                columns: new[] { "Id", "Balance", "Currency", "UserId" },
+                values: new object[] { 2, 2000.00m, 1, 1 });
+
+            migrationBuilder.InsertData(
+                table: "Wallet",
+                columns: new[] { "Id", "Balance", "Currency", "UserId" },
+                values: new object[] { 3, 2000.00m, 2, 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Transaction_CreditId",

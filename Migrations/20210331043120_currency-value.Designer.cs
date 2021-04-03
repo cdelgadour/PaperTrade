@@ -10,8 +10,8 @@ using PaperTradeAPI.Data;
 namespace PaperTradeAPI.Migrations
 {
     [DbContext(typeof(PaperTradeAPIContext))]
-    [Migration("20210326060755_initial")]
-    partial class initial
+    [Migration("20210331043120_currency-value")]
+    partial class currencyvalue
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -64,9 +64,7 @@ namespace PaperTradeAPI.Migrations
             modelBuilder.Entity("PaperTradeAPI.Models.User", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -78,20 +76,29 @@ namespace PaperTradeAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "test@test.com",
+                            Password = "test"
+                        });
                 });
 
             modelBuilder.Entity("PaperTradeAPI.Models.Wallet", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Balance")
                         .HasColumnType("decimal(18, 6)");
 
                     b.Property<int>("Currency")
                         .HasColumnType("int");
+
+                    b.Property<string>("CurrencyValue")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -101,6 +108,29 @@ namespace PaperTradeAPI.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Wallet");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Balance = 2000.00m,
+                            Currency = 0,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Balance = 2000.00m,
+                            Currency = 1,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Balance = 2000.00m,
+                            Currency = 2,
+                            UserId = 1
+                        });
                 });
 
             modelBuilder.Entity("PaperTradeAPI.Models.Transaction", b =>

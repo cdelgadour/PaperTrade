@@ -53,13 +53,15 @@ namespace PaperTradeAPI
 
             if (!context.User.Any())
             {
-                context.User.Add(new Models.User {
+                context.User.Add(new Models.User
+                {
                     Email = "test@test.com",
                     Password = "test"
                 });
             }
-
             context.SaveChanges();
+
+
         }
     }
 }
