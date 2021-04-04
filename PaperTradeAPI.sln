@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaperTradeAPI", "PaperTrade
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaperTradeXamarin.Android", "..\PaperTradeXamarin\PaperTradeXamarin.Android\PaperTradeXamarin.Android.csproj", "{A319E51F-AB78-406D-8EF5-5F899443D3E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaperTradeXamarin", "..\PaperTradeXamarin\PaperTradeXamarin\PaperTradeXamarin.csproj", "{EF5DEEC9-6DD0-4D13-927A-CD163557372C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaperTradeXamarin", "..\PaperTradeXamarin\PaperTradeXamarin\PaperTradeXamarin.csproj", "{EF5DEEC9-6DD0-4D13-927A-CD163557372C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

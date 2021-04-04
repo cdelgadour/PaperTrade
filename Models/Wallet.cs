@@ -14,8 +14,11 @@ namespace PaperTradeAPI.Models
     }
     public class Wallet
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
         public Currency Currency { get; set; }
+
+        public string CurrencyValue { get; set; }
 
         [Column(TypeName = "decimal(18, 6)")]
         public decimal Balance { get; set; }

@@ -24,14 +24,14 @@ namespace PaperTradeAPI.Controllers
 
         // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUser()
+        public async Task<ActionResult<IEnumerable<Models.User>>> GetUser()
         {
             return await _context.User.ToListAsync();
         }
 
         // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<Models.User>> GetUser(int id)
         {
             var user = await _context.User.FindAsync(id);
 
@@ -47,7 +47,7 @@ namespace PaperTradeAPI.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        public async Task<IActionResult> PutUser(int id, Models.User user)
         {
             if (id != user.Id)
             {
@@ -79,7 +79,7 @@ namespace PaperTradeAPI.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<Models.User>> PostUser(Models.User user)
         {
             _context.User.Add(user);
             await _context.SaveChangesAsync();
@@ -89,7 +89,7 @@ namespace PaperTradeAPI.Controllers
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<User>> DeleteUser(int id)
+        public async Task<ActionResult<Models.User>> DeleteUser(int id)
         {
             var user = await _context.User.FindAsync(id);
             if (user == null)
@@ -109,7 +109,7 @@ namespace PaperTradeAPI.Controllers
         }
 
         [HttpPost("validation")]
-        public ActionResult<User> ValidateUser(ValidateUser loginUser)
+        public ActionResult<Models.User> ValidateUser(ValidateUser loginUser)
         {
             var existingUser = _context.User.Where(user => user.Email == loginUser.Email && user.Password == loginUser.Password).FirstOrDefault();
 
