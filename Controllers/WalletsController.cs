@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -105,6 +106,30 @@ namespace PaperTradeAPI.Controllers
         private bool WalletExists(int id)
         {
             return _context.Wallet.Any(e => e.Id == id);
+        }
+
+        // GET: api/Wallets/5/Transactions
+        [HttpGet("{id}/Transactions")]
+        public async Task<ActionResult<List<Models.Transaction>>> GetWalletTransactions(int id)
+        {
+            var wallet = await _context.Wallet.FindAsync(id);
+
+            if (wallet == null)
+            {
+                return NotFound();
+            }
+            List<Models.Transaction> transactions = new List<Models.Transaction>();
+            try
+            {
+                transactions = await _context.Transaction.Where(x => x.CreditWalletId == wallet.Id).ToListAsync();
+            }
+            catch (Exception e)
+            {
+                Debug.Print(e.InnerException.ToString());
+                throw;
+            }
+
+            return transactions;
         }
     }
 }
